@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,7 +14,13 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const returnTo = safeReturnTo();
+  const navigate = useNavigate();
+
+  // Se safeReturnTo() devolver /login ou /, garante que vai para o dashboard principal
+  const targetDestination = () => {
+    const dest = safeReturnTo();
+    return (dest === "/login" || dest === "/register" || !dest) ? "/" : dest;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +30,7 @@ export default function Login() {
       if (base44.auth.login) {
         await base44.auth.login(email, password);
       }
-      window.location.href = returnTo;
+      navigate(targetDestination());
     } catch (err) {
       setError(err.message || "Invalid email or password");
     } finally {
@@ -32,8 +38,9 @@ export default function Login() {
     }
   };
 
-  const handleGoogle = () => {
-    window.location.href = returnTo;
+  const handleGoogle = (e) => {
+    e?.preventDefault();
+    navigate(targetDestination());
   };
 
   return (
@@ -45,7 +52,7 @@ export default function Login() {
         <>
           Don't have an account?{" "}
           <Link
-            to={"/register" + (returnTo !== "/" ? "?returnTo=" + encodeURIComponent(returnTo) : "")}
+            to="/register"
             className="text-primary font-medium hover:underline"
           >
             Create one
@@ -54,6 +61,7 @@ export default function Login() {
       }
     >
       <Button
+        type="button"
         variant="outline"
         className="w-full h-12 text-sm font-medium mb-6"
         onClick={handleGoogle}
