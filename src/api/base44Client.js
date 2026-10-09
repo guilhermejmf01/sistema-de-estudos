@@ -8,10 +8,17 @@ export const base44 = {
   functionsVersion,
   serverUrl: '',
   appBaseUrl,
-  // Implementação mock/stub para evitar erros de invocação caso alguma página chame a API
   auth: {
     getUser: async () => null,
-    login: async () => {},
+    me: async () => null,
+    login: async (email, password) => {
+      console.log('Login simulado para:', email);
+      return { id: '1', email };
+    },
+    register: async (data) => {
+      console.log('Registo simulado para:', data);
+      return { id: '1', ...data };
+    },
     logout: async () => {},
   },
   entities: {},
