@@ -1,22 +1,47 @@
 import { appParams } from '@/lib/app-params';
 
-const { appId, token, functionsVersion, appBaseUrl } = appParams;
+const mockUser = {
+  id: 'usr_mock_123',
+  email: 'guilhermejmf01@gmail.com',
+  name: 'Guilherme',
+  role: 'admin',
+};
 
 export const base44 = {
-  appId,
-  token,
-  functionsVersion,
+  appId: appParams.appId,
+  token: 'mock-valid-token-123',
+  functionsVersion: appParams.functionsVersion,
   serverUrl: '',
-  appBaseUrl,
+  appBaseUrl: appParams.appBaseUrl,
   auth: {
-    getUser: async () => ({ id: '1', email: 'user@example.com' }),
-    me: async () => ({ id: '1', email: 'user@example.com' }),
-    login: async (email, password) => ({ id: '1', email }),
-    register: async (data) => ({ id: '1', ...data }),
-    loginWithProvider: (provider, returnTo) => {
-      window.location.href = returnTo || '/';
+    getUser: async () => mockUser,
+    me: async () => mockUser,
+    getToken: () => 'mock-valid-token-123',
+    setToken: () => {},
+    login: async () => {
+      localStorage.setItem('token', 'mock-valid-token-123');
+      localStorage.setItem('base44_access_token', 'mock-valid-token-123');
+      return mockUser;
     },
-    logout: async () => {},
+    loginViaEmailPassword: async () => {
+      localStorage.setItem('token', 'mock-valid-token-123');
+      localStorage.setItem('base44_access_token', 'mock-valid-token-123');
+      return mockUser;
+    },
+    register: async () => {
+      localStorage.setItem('token', 'mock-valid-token-123');
+      localStorage.setItem('base44_access_token', 'mock-valid-token-123');
+      return mockUser;
+    },
+    loginWithProvider: () => {
+      localStorage.setItem('token', 'mock-valid-token-123');
+      localStorage.setItem('base44_access_token', 'mock-valid-token-123');
+      return mockUser;
+    },
+    logout: async () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('base44_access_token');
+    },
   },
   entities: {},
 };
