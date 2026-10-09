@@ -1,0 +1,58 @@
+{
+  "name": "Sessao",
+  "type": "object",
+  "properties": {
+    "concurso_id": {
+      "type": "string"
+    },
+    "topico_id": {
+      "type": "string"
+    },
+    "materia": {
+      "type": "string"
+    },
+    "titulo": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "teoria",
+        "questoes",
+        "revisao",
+        "simulado"
+      ],
+      "default": "teoria"
+    },
+    "duracao_min": {
+      "type": "number",
+      "default": 60
+    },
+    "xp": {
+      "type": "number",
+      "default": 0
+    },
+    "data": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendente",
+        "concluida"
+      ],
+      "default": "pendente"
+    },
+    "concluida_em": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "concurso_id",
+    "materia",
+    "titulo",
+    "data"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Perfil",
+  "type": "object",
+  "properties": {
+    "concurso_ativo_id": {
+      "type": "string"
+    },
+    "xp_total": {
+      "type": "number",
+      "default": 0
+    },
+    "streak": {
+      "type": "number",
+      "default": 0
+    },
+    "sessoes_concluidas": {
+      "type": "number",
+      "default": 0
+    },
+    "horas_estudadas": {
+      "type": "number",
+      "default": 0
+    },
+    "ultimo_estudo": {
+      "type": "string",
+      "format": "date"
+    }
+  }
+}

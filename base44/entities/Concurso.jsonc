@@ -1,0 +1,30 @@
+{
+  "name": "Concurso",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "cargo": {
+      "type": "string"
+    },
+    "banca": {
+      "type": "string"
+    },
+    "data_prova": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "concluido"
+      ],
+      "default": "ativo"
+    }
+  },
+  "required": [
+    "nome"
+  ]
+}

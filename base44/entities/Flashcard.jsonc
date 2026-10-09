@@ -1,0 +1,39 @@
+{
+  "name": "Flashcard",
+  "type": "object",
+  "properties": {
+    "concurso_id": {
+      "type": "string"
+    },
+    "topico_id": {
+      "type": "string"
+    },
+    "materia": {
+      "type": "string"
+    },
+    "frente": {
+      "type": "string"
+    },
+    "verso": {
+      "type": "string"
+    },
+    "acertos": {
+      "type": "number",
+      "default": 0
+    },
+    "erros": {
+      "type": "number",
+      "default": 0
+    },
+    "ultima_revisao": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "concurso_id",
+    "materia",
+    "frente",
+    "verso"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "Topico",
+  "type": "object",
+  "properties": {
+    "concurso_id": {
+      "type": "string"
+    },
+    "materia": {
+      "type": "string"
+    },
+    "titulo": {
+      "type": "string"
+    },
+    "peso": {
+      "type": "number",
+      "default": 3
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendente",
+        "estudando",
+        "dominado"
+      ],
+      "default": "pendente"
+    }
+  },
+  "required": [
+    "concurso_id",
+    "materia",
+    "titulo"
+  ]
+}
