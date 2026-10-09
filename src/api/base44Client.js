@@ -9,15 +9,12 @@ export const base44 = {
   serverUrl: '',
   appBaseUrl,
   auth: {
-    getUser: async () => null,
-    me: async () => null,
-    login: async (email, password) => {
-      console.log('Login simulado para:', email);
-      return { id: '1', email };
-    },
-    register: async (data) => {
-      console.log('Registo simulado para:', data);
-      return { id: '1', ...data };
+    getUser: async () => ({ id: '1', email: 'user@example.com' }),
+    me: async () => ({ id: '1', email: 'user@example.com' }),
+    login: async (email, password) => ({ id: '1', email }),
+    register: async (data) => ({ id: '1', ...data }),
+    loginWithProvider: (provider, returnTo) => {
+      window.location.href = returnTo || '/';
     },
     logout: async () => {},
   },
